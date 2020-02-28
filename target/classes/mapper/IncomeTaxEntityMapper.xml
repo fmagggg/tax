@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ihai.accounting.tax.mapper.IncomeTaxEntityMapper">
+    <resultMap id="BaseResultMap" type="com.ihai.accounting.tax.model.IncomeTaxEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="tax_type" jdbcType="TINYINT" property="taxType"/>
+        <result column="stage" jdbcType="TINYINT" property="stage"/>
+        <result column="taxable_income_start" jdbcType="INTEGER" property="taxableIncomeStart"/>
+        <result column="taxable_income_end" jdbcType="INTEGER" property="taxableIncomeEnd"/>
+        <result column="tax_rate" jdbcType="TINYINT" property="taxRate"/>
+        <result column="quick_calculation_deduction" jdbcType="INTEGER" property="quickCalculationDeduction"/>
+        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, code, tax_type, stage, taxable_income_start, taxable_income_end, tax_rate, quick_calculation_deduction,
+        is_delete, gmt_create, gmt_modified
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from income_tax
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByType" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+        select tax_type, stage, taxable_income_start, taxable_income_end, tax_rate, quick_calculation_deduction
+        from income_tax
+        where tax_type = #{taxType,jdbcType=TINYINT}
+        AND is_delete = 0
+    </select>
+    <select id="countByType" parameterType="java.lang.Byte" resultType="java.lang.Long">
+        select count(*)
+        from income_tax
+        where tax_type = #{taxType,jdbcType=TINYINT}
+        AND is_delete = 0
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from income_tax
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.ihai.accounting.tax.model.IncomeTaxEntity">
+        insert into income_tax (id, code, tax_type,
+        stage, taxable_income_start, taxable_income_end,
+        tax_rate, quick_calculation_deduction, is_delete,
+        gmt_create, gmt_modified)
+        values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{taxType,jdbcType=TINYINT},
+        #{stage,jdbcType=TINYINT}, #{taxableIncomeStart,jdbcType=INTEGER}, #{taxableIncomeEnd,jdbcType=INTEGER},
+        #{taxRate,jdbcType=TINYINT}, #{quickCalculationDeduction,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT},
+        #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ihai.accounting.tax.model.IncomeTaxEntity">
+        insert into income_tax
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="taxType != null">
+                tax_type,
+            </if>
+            <if test="stage != null">
+                stage,
+            </if>
+            <if test="taxableIncomeStart != null">
+                taxable_income_start,
+            </if>
+            <if test="taxableIncomeEnd != null">
+                taxable_income_end,
+            </if>
+            <if test="taxRate != null">
+                tax_rate,
+            </if>
+            <if test="quickCalculationDeduction != null">
+                quick_calculation_deduction,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="taxType != null">
+                #{taxType,jdbcType=TINYINT},
+            </if>
+            <if test="stage != null">
+                #{stage,jdbcType=TINYINT},
+            </if>
+            <if test="taxableIncomeStart != null">
+                #{taxableIncomeStart,jdbcType=INTEGER},
+            </if>
+            <if test="taxableIncomeEnd != null">
+                #{taxableIncomeEnd,jdbcType=INTEGER},
+            </if>
+            <if test="taxRate != null">
+                #{taxRate,jdbcType=TINYINT},
+            </if>
+            <if test="quickCalculationDeduction != null">
+                #{quickCalculationDeduction,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ihai.accounting.tax.model.IncomeTaxEntity">
+        update income_tax
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="taxType != null">
+                tax_type = #{taxType,jdbcType=TINYINT},
+            </if>
+            <if test="stage != null">
+                stage = #{stage,jdbcType=TINYINT},
+            </if>
+            <if test="taxableIncomeStart != null">
+                taxable_income_start = #{taxableIncomeStart,jdbcType=INTEGER},
+            </if>
+            <if test="taxableIncomeEnd != null">
+                taxable_income_end = #{taxableIncomeEnd,jdbcType=INTEGER},
+            </if>
+            <if test="taxRate != null">
+                tax_rate = #{taxRate,jdbcType=TINYINT},
+            </if>
+            <if test="quickCalculationDeduction != null">
+                quick_calculation_deduction = #{quickCalculationDeduction,jdbcType=INTEGER},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ihai.accounting.tax.model.IncomeTaxEntity">
+        update income_tax
+        set code = #{code,jdbcType=VARCHAR},
+        tax_type = #{taxType,jdbcType=TINYINT},
+        stage = #{stage,jdbcType=TINYINT},
+        taxable_income_start = #{taxableIncomeStart,jdbcType=INTEGER},
+        taxable_income_end = #{taxableIncomeEnd,jdbcType=INTEGER},
+        tax_rate = #{taxRate,jdbcType=TINYINT},
+        quick_calculation_deduction = #{quickCalculationDeduction,jdbcType=INTEGER},
+        is_delete = #{isDelete,jdbcType=TINYINT},
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

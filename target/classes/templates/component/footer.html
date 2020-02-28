@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer" class="footer bg-black text-600 py-4 text-sans-serif text-center overflow-hidden" data-zanim-timeline="{}" data-zanim-trigger="scroll">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 order-lg-2">
+                <a class="indicator indicator-up" href="#top" data-fancyscroll="data-fancyscroll"><span class="indicator-arrow indicator-arrow-one" data-zanim-xs='{"from":{"opacity":0,"y":15},"to":{"opacity":1,"y":-5,"scale":1},"ease":"Back.easeOut","duration":0.4,"delay":0.9}'></span><span class="indicator-arrow indicator-arrow-two" data-zanim-xs='{"from":{"opacity":0,"y":15},"to":{"opacity":1,"y":-5,"scale":1},"ease":"Back.easeOut","duration":0.4,"delay":1.05}'></span></a>
+            </div>
+            <div class="col-lg-4 text-lg-left mt-4 mt-lg-0">
+                <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Copyright &copy; 2019 Pany</p>
+            </div>
+            <div class="col-lg-4 text-lg-right order-lg-2 mt-2 mt-lg-0">
+                <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Made with<span class="text-danger fas fa-heart mx-1"></span>by
+                    <a class="text-600" href="https://themewagon.com/">Zhangyd</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/plugins.js}"></script>
+    <script th:src="@{/lib/loaders.css/loaders.css.js}"></script>
+    <script th:src="@{/lib/sweetalert/sweetalert.min.js}"></script>
+    <script th:src="@{/js/stickyfill.min.js}"></script>
+    <script th:src="@{/lib/jtap/jquery.tap.js}"></script>
+    <script th:src="@{/js/rellax.min.js}"></script>
+    <script th:src="@{/lib/fancybox/jquery.fancybox.min.js}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-122907869-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-122907869-1');
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        ctxPath = /*[[@{/}]]*/ '';
+    </script>
+    <script th:src="@{/lib/isotope-layout/isotope.pkgd.min.js}"></script>
+    <script th:src="@{/lib/isotope-packery/packery-mode.pkgd.min.js}"></script>
+    <script th:src="@{/js/theme.js}"></script>
+</footer>
+</body>
+</html>
